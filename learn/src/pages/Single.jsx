@@ -1,12 +1,22 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Navbar from "../Components/Navbar"
 import axios from "axios"
+import { useParams } from "react-router-dom"
 
 function Single(){
+    const {id}=useParams()
+
+    const [blog,setblog]=useState({})
     const fetchsingle= async()=>{
-        const response=await axios.get("http://localhost:3000/blog/67359a295ecefb45e01c92aa")
-        console.log(response.data.data)
+        const response=await axios.get("http://localhost:3000/blog/"+id)
+        if(response.status===200){
+            setblog(response.data.data)
+        
         }
+        else{
+            alert("something wrong")
+        }
+    }
         useEffect(()=>{
             fetchsingle()
         },[])
@@ -25,12 +35,12 @@ function Single(){
                         <button className="w-full bg-gray-900 dark:bg-gray-600 text-white py-2 px-4 rounded-full font-bold hover:bg-gray-800 dark:hover:bg-gray-700">Add to Cart</button>
                     </div>
                     <div className="w-1/2 px-2">
-                        <button className="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600">Add to Wishlist</button>
+                        <button className="w-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white py-2 px-4 rounded-full font-bold hover:bg-gray-300 dark:hover:bg-gray-600">{blog.title}</button>
                     </div>
                 </div>
             </div>
             <div className="md:flex-1 px-4">
-                <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Product Name</h2>
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">{blog.title}</h2>
                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed
                     ante justo. Integer euismod libero id mauris malesuada tincidunt.
