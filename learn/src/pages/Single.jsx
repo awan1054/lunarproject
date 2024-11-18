@@ -1,7 +1,15 @@
+import { useEffect } from "react"
 import Navbar from "../Components/Navbar"
-
+import axios from "axios"
 
 function Single(){
+    const fetchsingle= async()=>{
+        const response=await axios.get("http://localhost:3000/blog/67359a295ecefb45e01c92aa")
+        console.log(response.data.data)
+        }
+        useEffect(()=>{
+            fetchsingle()
+        },[])
     return(
     <>
     <Navbar/>
