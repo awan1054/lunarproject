@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import Navbar from "../Components/Navbar"
 import axios from "axios"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 function Single(){
     const {id}=useParams()
@@ -83,6 +83,7 @@ function Single(){
                         ut erat vitae nisi ultrices placerat non eget velit. Integer ornare mi sed ipsum lacinia, non
                         sagittis mauris blandit. Morbi fermentum libero vel nisl suscipit, nec tincidunt mi consectetur.
                     </p>
+                   <button> <Link to={'/edit/'+id}>Edit</Link></button>
                 </div>
             </div>
         </div>
